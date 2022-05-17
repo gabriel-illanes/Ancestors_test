@@ -273,6 +273,9 @@ end
 # This function depends on all previous functions.
 # method can take values in: test_maxmax, test_maxsum, test_summax, test_sumsum,
 # depending on the choices of chromosome statistic and scores grouping
+# Important note: T is a vector with every generation that we want to test;
+# the first mating for generation T is trivial and thus not simulated,
+# so if you want to test for two generations ago, then T = 1.
 function test_method_all(M_obs::Matrix{Float64}, max_iter::Int64, T::Vector{Int64},
   L::Vector{Float64}, method::Function)::Matrix{Float64}
   N_donors = size(M_obs)[2]
@@ -317,7 +320,6 @@ L = vec(readdlm("largos_chr.csv", ' ', Float64)./100);
 
 #####
 # Plots for test p-values for every individual
-
 res = test_method_all(est_max_fin, 10000, [1, 2,3, 4], L, test_maxmax)
 scatter(res, ylim = [0,1], label = ["t = 2" "t = 3" "t = 4" "t = 5"], legend = :topleft,
   xlabel = "Individuals", ylabel = "p-value", mode = "markers", marker = [:diamond :star :circle :square])
