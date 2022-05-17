@@ -295,7 +295,7 @@ end
 #####
 
 using  DelimitedFiles
-cd("/home/illa/Nextcloud/URUGENOMES/illa/Pres1")
+cd("/My/Work/Directory")
 
 # est_max has maximum of all lengths for each chromosome
 est_max = readdlm("est_max.csv", ' ', Float64);
